@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			token: localStorage.getItem("token"),
 			message: null,
 			demo: [
 				{
@@ -17,6 +18,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
+			storeToken: () =>{
+				setStore({token: localStorage.getItem("token")})
+			},
+			logout: ()=> {
+				localStorage.removeItem("token")
+				setStore({token: null})
+			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
